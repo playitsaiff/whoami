@@ -20,6 +20,7 @@ const App: React.FC = () => {
   const [answer, setAnswer] = useState("");
   const [systemResponse, setSystemResponse] = useState("");
 
+  console.log(question);
   const systemMessage = {
     //  Explain things like you're talking to a software professional with 5 years of experience.
     role: "system",
@@ -49,6 +50,7 @@ const App: React.FC = () => {
       setGameOver(false);
       setSystemResponse(responseData.choices[0].message.content);
       console.log("areee", responseData);
+      setAnswer("");
     } catch (error) {
       console.log(error);
     }
