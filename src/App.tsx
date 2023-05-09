@@ -143,6 +143,11 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <h1>Guess Who Am I</h1>
+      <p>
+        Ask true or false questions about the celebrity. Ex: Am i male?, am i
+        actor? And finally write the name if you have guessed the celebrity by
+        the clues. Ex: Taylor swift
+      </p>
       {gameOver ? (
         <div>
           <button onClick={startGame}>Start Game</button>
@@ -151,7 +156,7 @@ const App: React.FC = () => {
         <div>
           <h2>Score: {score}</h2>
           <div
-            style={{ position: "relative", height: "800px", width: "700px" }}
+            style={{ position: "relative", height: "500px", width: "700px" }}
           >
             <MainContainer>
               <ChatContainer>
