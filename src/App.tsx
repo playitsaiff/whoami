@@ -15,17 +15,13 @@ const API_KEY = "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";
 
 const App: React.FC = () => {
   const [score, setScore] = useState(0);
-  const [question, setQuestion] = useState("");
   const [gameOver, setGameOver] = useState(true);
-  const [answer, setAnswer] = useState("");
   const [systemResponse, setSystemResponse] = useState("");
 
-  console.log(question);
   const systemMessage = {
-    //  Explain things like you're talking to a software professional with 5 years of experience.
     role: "system",
     content:
-      "Lets play a game where you will randomly choose a celeb name and then i will ask few yes/no questions as i am that celebrity. If the answer is yes then respond with yes , if no say no then you will respond with no. If i guess the celeb name then respond with you have won the game. So you choose a celebrity and let start the game.",
+      "Lets play a game where you will randomly choose a celeb name and then i will ask few yes/no questions as i am that celebrity. If i say the celeb name or am i this celeb then responsd with you have won the game. If the answer is yes then respond with yes , if no say no then you will respond with no. If i say the celeb name or my repsonse contains celeb name then respond with you have won the game. Resposnd with you have won the game if i have guessed the celeb name and not with yes or any other ways. So you choose a celebrity and let start the game.",
   };
 
   const startGame = async () => {
@@ -49,8 +45,6 @@ const App: React.FC = () => {
       const responseData = await response.json();
       setGameOver(false);
       setSystemResponse(responseData.choices[0].message.content);
-      console.log("areee", responseData);
-      setAnswer("");
     } catch (error) {
       console.log(error);
     }
@@ -59,21 +53,13 @@ const App: React.FC = () => {
   const [messages, setMessages] = useState<MessageModel[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
-  // const askQuestion = async () => {
-  //   request(question).then((response) => {
-  //     if (response && response.toLowerCase() === "yes") {
-  //       setScore(score + 1);
-  //       setGameOver(true);
-  //       setQuestion("");
-  //     }
-  //   });
-  // };
-
   const restartGame = () => {
     setScore(0);
-    setGameOver(true);
-    setQuestion("");
+    startGame();
+    setMessages([]);
+    setGameOver(false);
   };
+
   const handleSend = async (message: string) => {
     const newMessage: MessageModel = {
       message,
@@ -142,6 +128,14 @@ const App: React.FC = () => {
             position: "normal",
           },
         ]);
+        if (
+          (data.choices[0].message.content as String).includes("won the game")
+        ) {
+          setScore(score + 1);
+          startGame();
+          setMessages([]);
+          setGameOver(false);
+        }
         setIsTyping(false);
       });
   }
@@ -180,7 +174,6 @@ const App: React.FC = () => {
                 />
               </ChatContainer>
             </MainContainer>
-            <p>Answer: {answer}</p>
             <button onClick={restartGame}>Restart Game</button>
           </div>
         </div>
