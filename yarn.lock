@@ -1368,10 +1368,10 @@
     "@fluentui/set-version" "^8.2.14"
     tslib "^2.1.0"
 
-"@gcs-ui-controls/react@^0.4.73":
-  version "0.4.73"
-  resolved "https://pkgs.dev.azure.com/MicrosoftIT/OneITVSO/_packaging/HR-GTA-GlobalTalentSourcing/npm/registry/@gcs-ui-controls/react/-/react-0.4.73.tgz#17264cef3f0f302d9491d4bce95c00641115bdaf"
-  integrity sha1-FyZM7z8PMC2UkdS86VwAZBEVva8=
+"@gcs-ui-controls/react@^0.4.74":
+  version "0.4.74"
+  resolved "https://pkgs.dev.azure.com/MicrosoftIT/OneITVSO/_packaging/HR-GTA-GlobalTalentSourcing/npm/registry/@gcs-ui-controls/react/-/react-0.4.74.tgz#56457384501de8bdd9bf7833030ece6431ea49f0"
+  integrity sha1-VkVzhFAd6L3Zv3gzAw7OZDHqSfA=
   dependencies:
     "@coherence-design-system/controls" "4.3.0"
     "@fluentui/react-hooks" "^8.6.14"
